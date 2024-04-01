@@ -1,0 +1,75 @@
+{
+    "name": "rust-wasm-template",
+    "dockerComposeFile": [
+        "../docker-compose.yml",
+        "docker-compose.yml"
+    ],
+    "service": "devcontainer",
+    "workspaceFolder": "/workspace",
+    "features": {
+        "ghcr.io/devcontainers/features/rust:1": {
+            "version": "latest",
+            "profile": "default"
+        },
+        "ghcr.io/devcontainers-contrib/features/npm-package:1": {
+            "package": "typescript",
+            "version": "latest"
+        }
+    },
+    "forwardPorts": [
+        8080
+    ],
+    "postCreateCommand": "sh .devcontainer/post_create.sh",
+    "postStartCommand": "sh .devcontainer/post_start.sh ${containerWorkspaceFolder}",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.guides.bracketPairs": true,
+                "editor.formatOnSave": true,
+                "[rust]": {
+                    "editor.formatOnSave": true,
+                    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+                    "editor.formatOnPaste": true,
+                    "editor.formatOnType": true
+                },
+                "rust-analyzer.checkOnSave": true,
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.check.extraArgs": [
+                    "--",
+                    "-A",
+                    "clippy::needless_return"
+                ]
+            },
+            "extensions": [
+                // Rust関連
+                "rust-lang.rust-analyzer",
+                "serayuzgur.crates",
+                "tamasfe.even-better-toml",
+                "swellaby.vscode-rust-test-adapter",
+                "jscearcy.rust-doc-viewer",
+                "ms-vscode.live-server",
+                "vadimcn.vscode-lldb",
+                "ms-vscode.makefile-tools",
+                // Git関連
+                "GitHub.vscode-pull-request-github",
+                "github.vscode-github-actions",
+                "mhutchie.git-graph",
+                "eamodio.gitlens",
+                "donjayamanne.githistory",
+                "seatonjiang.gitmoji-vscode",
+                // その他
+                "adpyke.vscode-sql-formatter",
+                "streetsidesoftware.code-spell-checker",
+                "naumovs.color-highlight",
+                "formulahendry.auto-rename-tag",
+                "MariusAlchimavicius.json-to-ts",
+                "dsznajder.es7-react-js-snippets",
+                "styled-components.vscode-styled-components",
+                "Gruntfuggly.todo-tree",
+                "oderwat.indent-rainbow",
+                "pkief.material-icon-theme",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}
